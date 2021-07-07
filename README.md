@@ -1,5 +1,7 @@
 # Loon Profiles
 
+**🍒 下载「彩云天气」APP，输入我的邀请码：`24066808`，白嫖一年 SVIP。**
+
 Loon **真·小白配置**。
 
 这份配置融合了[官方推荐配置文件](https://www.notion.so/aea3efeb1b1e4b38b258c626df09c548)，在保证只有一组策略的情况下，使用了 NobyDa，ACL4SSR 和神机规则。实现国内直连，国外扶梯，去除广告的效果。
