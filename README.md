@@ -12,6 +12,8 @@ Loon **真·小白配置**。
 
 [🍒视频教程及操作详情请阅读此文了解更多](https://lijianxun.top/209.html)，感谢支持 🙏
 
+[卡车极速飞机场](https://kcssr.me/auth/register?code=jUqG)
+
 ## 使用
 
 1. 复制配置文件 URL
