@@ -1,14 +1,68 @@
+# LOON CONFIG
+# AUTHOR: LIJMXY
+# DATE: 2023.01.26
+
 [General]
+# > Google，Cloudflare，腾讯，阿里云 DoH
+doh-server = https://dns.google/dns-query,https://1.1.1.1/dns-query,https://doh.pub/dns-query,https://dns.alidns.com/dns-query
+
+# > IPv6 支持（默认关闭）
 ipv6 = false
-skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,localhost,*.local,e.crashlynatics.com
+
+# > 跳过代理
+skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,localhost,*.local,e.crashlynatics.com,*.cmpassport.com,*.jegotrip.com.cn,*.icitymobile.mobi,id6.me,*.pingan.com.cn,*.cmbchina.com
+
+# > 旁路隧道
 bypass-tun = 10.0.0.0/8,100.64.0.0/10,127.0.0.0/8,169.254.0.0/16,172.16.0.0/12,192.0.0.0/24,192.0.2.0/24,192.88.99.0/24,192.168.0.0/16,198.51.100.0/24,203.0.113.0/24,224.0.0.0/4,255.255.255.255/32
-dns-server = system,223.5.5.5,223.6.6.6
+
+# > dns服务器
+dns-server = system,223.5.5.5,223.6.6.6,119.29.29.29
+
+# > wifi 访问
 allow-wifi-access = false
+
+# > wifi 访问（http 端口）
 wifi-access-http-port = 7222
+
+# > wifi 访问（socket5 端口）
 wifi-access-socks5-port = 7221
-proxy-test-url = http://cp.cloudflare.com/generate_204
+
+# > 代理测试网址
+proxy-test-url = http://www.gstatic.com/generate_204
+
+# > 测试超时
 test-timeout = 2
+
+# > 接口模式
 interface-mode = auto
+
+# > 节点连续失败 3 后进行节点切换
+switch-node-after-failure-times = 3
+
+# > 资源解析器
+# resource-parser = https://raw.githubusercontent.com/Peng-YM/Sub-Store/master/backend/dist/sub-store-parser.loon.min.js
+
+[Host]
+*.taobao.com = server:223.5.5.5
+*.tmall.com = server:223.5.5.5
+*.jd.com = server:119.28.28.28
+*.qq.com = server:119.28.28.28
+*.tencent.com = server:119.28.28.28
+*.alicdn.com = server:223.5.5.5
+*.aliyun.com = server:223.5.5.5
+*.weixin.com = server:119.28.28.28
+*.163.com = server:119.29.29.29
+*.126.com = server:119.29.29.29
+*.126.net = server:119.29.29.29
+*.127.net = server:119.29.29.29
+*.netease.com = server:119.29.29.29
+*.mi.com = server:119.29.29.29
+*.xiaomi.com = server:119.29.29.29
+*.bilibili.com = server:119.29.29.29
+*testflight.apple.com = server:8.8.4.4
+mtalk.google.com = 108.177.125.188
+dl.google.com = server:119.29.29.29
+dl.l.google.com = server:119.29.29.29
 
 [Proxy]
 
@@ -16,7 +70,14 @@ interface-mode = auto
 卡车极速 = https://kcssr.me/auth/register?code=jUqG
 
 [Proxy Group]
-ALL-SUB = select,卡车极速
+ALL-SUB = url-test,韩国,日本,香港,台湾,美国,新加坡,其他地区,url = http://www.gstatic.com/generate_204,interval = 60,tolerance = 1500,img-url = https://raw.githubusercontent.com/alpha87/Loon-icon/master/Color/SWCloud.png
+香港 = url-test,HK_Filter,url = http://www.gstatic.com/generate_204,interval = 600,tolerance = 1000,img-url = https://raw.githubusercontent.com/alpha87/Loon-icon/master/Color/HK.png
+台湾 = url-test,TW_Filter,url = http://www.gstatic.com/generate_204,interval = 600,tolerance = 1500,img-url = https://raw.githubusercontent.com/alpha87/Loon-icon/master/Color/TW.png
+美国 = url-test,US_Filter,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 1000,img-url = https://raw.githubusercontent.com/alpha87/Loon-icon/master/Color/US.png
+韩国 = url-test,KR_Filter,url = http://www.gstatic.com/generate_204,interval = 600,tolerance = 1500,img-url = https://raw.githubusercontent.com/alpha87/Loon-icon/master/Color/KR.png
+日本 = url-test,JP_Filter,url = http://www.gstatic.com/generate_204,interval = 300,tolerance = 1000,img-url = https://raw.githubusercontent.com/alpha87/Loon-icon/master/Color/JP.png
+新加坡 = url-test,SG_Filter,url = http://www.gstatic.com/generate_204,interval = 600,tolerance = 2000,img-url = https://raw.githubusercontent.com/alpha87/Loon-icon/master/Color/SG.png
+其他地区 = url-test,IN_Filter,BZ_Filter,TU_Filter,RS_Filter,url = http://www.gstatic.com/generate_204,interval = 1800,tolerance = 3000,img-url = https://raw.githubusercontent.com/alpha87/Loon-icon/master/Color/UN.png
 
 [Remote Filter]
 HK_Filter = NameRegex, FilterKey = "(?i)(港|HK|Hong)"
@@ -25,24 +86,37 @@ JP_Filter = NameRegex, FilterKey = "(?i)(日本|川日|东京|大阪|泉日|埼�
 KR_Filter = NameRegex, FilterKey = "(?i)(KR|Korea|KOR|首尔|韩|韓)"
 US_Filter = NameRegex, FilterKey = "(?i)(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)"
 SG_Filter = NameRegex, FilterKey = "(?i)(新加坡|坡|狮城|SG|Singapore)"
+TU_Filter = NameKeyword, FilterKey = "土耳其"
+BZ_Filter = NameKeyword, FilterKey = "巴西"
+IN_Filter = NameKeyword, FilterKey = "印度"
+RS_Filter = NameKeyword, FilterKey = "俄罗斯"
 
 [Rule]
 GEOIP,cn,DIRECT
 FINAL,ALL-SUB
 
 [Remote Rule]
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Proxy/Proxy.list, policy=ALL-SUB, tag=Global, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Proxy/Proxy.list, policy=ALL-SUB, tag=Global, parser-enable=true, enabled=true
+https://raw.githubusercontent.com/NobyDa/Script/master/Surge/Bilibili.list, policy=DIRECT, tag=哔哩哔哩, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/XiaoHongShu/XiaoHongShu.list, policy=DIRECT, tag=小红书, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Weibo/Weibo.list, policy=DIRECT, tag=微博, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Zhihu/Zhihu.list, policy=DIRECT, tag=知乎, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/WeChat/WeChat.list, policy=DIRECT, tag=微信, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/ZhihuAds/ZhihuAds.list, policy=REJECT-DROP, tag=知乎去广告, enabled=true
 
 [Rewrite]
 
 [Script]
+http-response ^https?:\/\/biz\.caiyunapp\.com\/(membership_rights|v2\/user) script-path=weathervip.js, requires-body=true, timeout=10, tag=彩云天气VIP
+http-response ^https?:\/\/backend\.getdrafts\.com\/api\/v1\/verification\/verify_receipt script-path=drafts.js, requires-body=true, timeout=10, tag=DraftsVIP
 
 [Plugin]
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Loon/Redirect/Redirect.plugin, policy=ALL-SUB, tag=重定向, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Loon/Advertising/Advertising.plugin, policy=REJECT, tag=Advertising, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Loon/AdvertisingScript/AdvertisingScript.plugin, policy=REJECT, tag=AdvertisingScript, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Loon/AllInOne/AllInOne.plugin, policy=REJECT, tag=ALL IN ONE, enabled=true
-https://raw.githubusercontent.com/zqzess/rule_for_quantumultX/master/Loon/Plugin/bilibili.plugin, policy=REJECT, tag=哔哩哔哩ADs, enabled=true
+https://raw.githubusercontent.com/zqzess/rule_for_quantumultX/master/Loon/Plugin/bilibili.plugin, policy=DIRECT, tag=哔哩哔哩, enabled=true
 https://raw.githubusercontent.com/zqzess/rule_for_quantumultX/master/Loon/Plugin/YouTubeAd.plugin, policy=REJECT, tag=YouTubeADs, enabled=true
 
 [Mitm]
+hostname = backend.getdrafts.com,biz.caiyunapp.com
